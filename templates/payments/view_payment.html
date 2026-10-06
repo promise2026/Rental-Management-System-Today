@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="text-center mt-5">Paymnet Details - {{ payment.amount }}</h3>
+<div class="container m-2 text-center">
+    <p><span class="fw-bold">Amount: </span>{{ payment.amount }}</p>
+    <p><span class="fw-bold">Transaction ID: </span>{{ payment.transaction_id }}</p>
+    <p><span class="fw-bold">Agent </span>{{ payment.agent.name }}</p>
+    <p><span class="fw-bold">Landlord: </span>{{ payment.landlord.owner_name }}</p>
+</div>
+    <a href="{% url 'add_property_cancel' %}" class="btn btn-danger">
+        <- Back
+    </a>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'dashboard/sidebar.html' %}
+
+{% block dashboard_content %}
+
+<h3 class="mb-4 text-primary">Payments Management</h3>
+
+<!-- 🔷 SUMMARY -->
+<div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="card p-3 shadow text-center">
+            <h6>This Month</h6>
+            <h3 class="text-success">UGX 1,200,000</h3>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 shadow text-center">
+            <h6>Total Earnings</h6>
+            <h3 class="text-primary">UGX 8,500,000</h3>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 shadow text-center">
+            <h6>Transactions</h6>
+            <h3 class="text-dark">120</h3>
+        </div>
+    </div>
+
+</div>
+
+<!-- 🔷 MONTHLY CARD -->
+<div class="card shadow p-3 mb-4">
+    <h5 class="text-primary">Monthly Earnings (Sample)</h5>
+    <p>Jan: 500k | Feb: 700k | Mar: 1.2M | Apr: 900k</p>
+</div>
+
+<!-- 🔷 TABLE -->
+<div class="card shadow p-3">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h5 class="text-primary">Payment Records</h5>
+        <a href="{% url 'add_payment' %}" class="btn btn-primary btn-sm">+ Add Payment</a>
+    </div>
+
+    <table class="table table-hover align-middle">
+
+        <thead class="table-primary">
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Transaction ID</th>
+                <th>Agent</th>
+                <th>Landlord</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for p in payments %}
+            <tr>
+                <td>{{ p.date }}</td>
+                <td>{{ p.amount }}</td>
+                <td>{{ p.transaction_id }}</td>
+                <td>{{ p.agent.name }}</td>
+                <td>{{ p.landlord.owner_name }}</td>
+                <td>
+                    <a href="{% url 'view_payment' p.pk %}" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></button>
+                    <a href="{% url 'edit_payment' p.pk %}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                    <a href="{% url 'delete_payment' p.pk %}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+            
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

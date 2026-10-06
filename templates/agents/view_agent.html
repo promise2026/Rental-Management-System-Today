@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="text-center mt-5">Agent Details - {{ agent.name }}</h3>
+<div class="container m-2 text-center">
+    <p><span class="fw-bold">Agent Name: </span>{{ agent.name }}</p>
+    <p><span class="fw-bold">username: </span>{{ agent.location }}</p>
+    <p><span class="fw-bold">Telephone: </span>{{ agent.phone }}</p>
+    <p><span class="fw-bold">Address: </span>{{ agent.address }}</p>
+    <p><span class="fw-bold">No. of Properties Agent: </span>{{ agent.no_of_properties }}</p>
+    <p><span class="fw-bold">Status: </span>{{ agent.status }}</p>
+    <p><span class="fw-bold">Created At: </span>{{ agent.created_at }}</p>
+    <p><span class="fw-bold">Updated At: </span>{{ agent.updated_at }}</p>
+</div>
+    <a href="{% url 'add_property_cancel' %}" class="btn btn-danger">
+        <- Back
+    </a>
+
+{% endblock %}

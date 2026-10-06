@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="text-center mt-5">Edit Agent - {{agent.name}}</h3>
+<form action="{% url 'edit_agent' agent.id %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{% url 'add_property_cancel' %}" class="btn btn-danger">
+        Cancel
+    </a>
+</form>
+
+{% endblock %}

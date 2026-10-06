@@ -1,0 +1,315 @@
+{% extends 'dashboard/sidebar.html' %}
+
+{% block dashboard_content %}
+
+<div class="container-fluid">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-primary fw-bold">System Reports & Insights</h3>
+        <div class="d-flex gap-2">
+            <select class="form-select form-select-sm" id="report-period">
+                <option value="monthly">This Month</option>
+                <option value="quarterly">This Quarter</option>
+                <option value="yearly" selected>This Year (2026)</option>
+                <option value="custom">Custom Range</option>
+            </select>
+            <button class="btn btn-primary btn-sm px-3" onclick="generateReport()">
+                <i class="fas fa-download me-1"></i> Export PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- KPI Summary Cards -->
+    <div class="row g-3 mb-5">
+        <div class="col-xl-2 col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-muted mb-1">Total Properties</h6>
+                            <h2 class="fw-bold text-primary mb-0">248</h2>
+                        </div>
+                        <i class="fas fa-building fa-2x text-primary opacity-75"></i>
+                    </div>
+                    <small class="text-success"><i class="fas fa-arrow-up"></i> +18 this month</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-muted mb-1">Active Tenants</h6>
+                            <h2 class="fw-bold text-success mb-0">187</h2>
+                        </div>
+                        <i class="fas fa-users fa-2x text-success opacity-75"></i>
+                    </div>
+                    <small class="text-muted">Occupancy Rate: <strong>76%</strong></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-muted mb-1">Total Agents</h6>
+                            <h2 class="fw-bold text-info mb-0">24</h2>
+                        </div>
+                        <i class="fas fa-handshake fa-2x text-info opacity-75"></i>
+                    </div>
+                    <small class="text-success"><i class="fas fa-arrow-up"></i> +3 this quarter</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-muted mb-1">Total Revenue (YTD)</h6>
+                            <h2 class="fw-bold text-warning mb-0">UGX 287.4M</h2>
+                        </div>
+                        <i class="fas fa-money-bill-wave fa-2x text-warning opacity-75"></i>
+                    </div>
+                    <small class="text-success"><i class="fas fa-arrow-up"></i> 24% vs last year</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-muted mb-1">Avg. Monthly Rent</h6>
+                            <h2 class="fw-bold text-purple mb-0">UGX 685K</h2>
+                        </div>
+                        <i class="fas fa-chart-line fa-2x text-purple opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-2 col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="text-muted mb-1">Pending Requests</h6>
+                            <h2 class="fw-bold text-danger mb-0">42</h2>
+                        </div>
+                        <i class="fas fa-exclamation-triangle fa-2x text-danger opacity-75"></i>
+                    </div>
+                    <small class="text-muted">Maintenance + Bookings</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Property Performance by Type -->
+        <div class="col-lg-7">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Performance by Property Type</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Property Type</th>
+                                    <th class="text-center">Total Units</th>
+                                    <th class="text-center">Occupied</th>
+                                    <th class="text-center">Occupancy %</th>
+                                    <th class="text-end">Revenue (YTD)</th>
+                                    <th class="text-center">Avg. Rent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Hostels</strong></td>
+                                    <td class="text-center">92</td>
+                                    <td class="text-center">81</td>
+                                    <td class="text-center"><span class="badge bg-success">88%</span></td>
+                                    <td class="text-end">UGX 98.4M</td>
+                                    <td class="text-center">UGX 420K</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Single Rooms</strong></td>
+                                    <td class="text-center">76</td>
+                                    <td class="text-center">54</td>
+                                    <td class="text-center"><span class="badge bg-warning">71%</span></td>
+                                    <td class="text-end">UGX 42.6M</td>
+                                    <td class="text-center">UGX 280K</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Single Self-Contained</strong></td>
+                                    <td class="text-center">45</td>
+                                    <td class="text-center">38</td>
+                                    <td class="text-center"><span class="badge bg-success">84%</span></td>
+                                    <td class="text-end">UGX 68.2M</td>
+                                    <td class="text-center">UGX 950K</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Double Rooms</strong></td>
+                                    <td class="text-center">28</td>
+                                    <td class="text-center">23</td>
+                                    <td class="text-center"><span class="badge bg-info">82%</span></td>
+                                    <td class="text-end">UGX 31.5M</td>
+                                    <td class="text-center">UGX 650K</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hotels / Guest Houses</strong></td>
+                                    <td class="text-center">12</td>
+                                    <td class="text-center">11</td>
+                                    <td class="text-center"><span class="badge bg-success">92%</span></td>
+                                    <td class="text-end">UGX 46.7M</td>
+                                    <td class="text-center">UGX 2.1M</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Insights & Highlights -->
+        <div class="col-lg-5">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Key Insights</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Most Popular Type:</strong> Hostels</span>
+                            <span class="badge bg-primary">88% Occupancy</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Top Performing Agent:</strong> John Mukasa</span>
+                            <span class="badge bg-success">UGX 47.2M</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Highest Revenue Location:</strong> Kampala Central</span>
+                            <span class="badge bg-warning">UGX 124M</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Best Month this Year:</strong> March 2026</span>
+                            <span class="badge bg-info">UGX 38.9M</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Lowest Occupancy:</strong> Single Rooms</span>
+                            <span class="badge bg-danger">71%</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Average Tenant Stay:</strong> 11 months</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue by Location -->
+        <div class="col-lg-12 mt-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Revenue by Location</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-2 col-6 mb-4">
+                            <h5 class="text-primary">Kampala Central</h5>
+                            <h4 class="fw-bold">UGX 124M</h4>
+                            <small class="text-success">43% of total revenue</small>
+                        </div>
+                        <div class="col-md-2 col-6 mb-4">
+                            <h5 class="text-info">Entebbe</h5>
+                            <h4 class="fw-bold">UGX 68M</h4>
+                            <small class="text-success">24%</small>
+                        </div>
+                        <div class="col-md-2 col-6 mb-4">
+                            <h5 class="text-success">Wakiso</h5>
+                            <h4 class="fw-bold">UGX 39M</h4>
+                            <small>14%</small>
+                        </div>
+                        <div class="col-md-2 col-6 mb-4">
+                            <h5 class="text-warning">Ntinda</h5>
+                            <h4 class="fw-bold">UGX 28M</h4>
+                            <small>10%</small>
+                        </div>
+                        <div class="col-md-2 col-6 mb-4">
+                            <h5 class="text-danger">Kisaasi</h5>
+                            <h4 class="fw-bold">UGX 17M</h4>
+                            <small>6%</small>
+                        </div>
+                        <div class="col-md-2 col-6 mb-4">
+                            <h5 class="text-muted">Others</h5>
+                            <h4 class="fw-bold">UGX 11.4M</h4>
+                            <small>4%</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent Performance -->
+        <div class="col-lg-12 mt-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Top Performing Agents</h5>
+                    <a href="" class="btn btn-sm btn-outline-primary">View Full Agent Report</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Agent Name</th>
+                                    <th>Properties Managed</th>
+                                    <th>Tenants Acquired</th>
+                                    <th class="text-end">Revenue Generated</th>
+                                    <th class="text-center">Commission Earned</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>John Mukasa</strong></td>
+                                    <td>18</td>
+                                    <td>42</td>
+                                    <td class="text-end">UGX 47.2M</td>
+                                    <td class="text-center text-success">UGX 3.8M</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mary Nakato</strong></td>
+                                    <td>12</td>
+                                    <td>29</td>
+                                    <td class="text-end">UGX 31.5M</td>
+                                    <td class="text-center text-success">UGX 2.5M</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Peter Ssempa</strong></td>
+                                    <td>9</td>
+                                    <td>18</td>
+                                    <td class="text-end">UGX 19.8M</td>
+                                    <td class="text-center text-success">UGX 1.6M</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

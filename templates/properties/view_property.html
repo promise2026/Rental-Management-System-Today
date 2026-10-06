@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="text-center mt-5">Property Details - {{ property.name }}</h3>
+<div class="container m-2 text-center">
+    <p><span class="fw-bold">Property Name: </span>{{ property.property_type }}</p>
+    <p><span class="fw-bold">Location: </span>{{ property.location }}</p>
+    <p><span class="fw-bold">Price: UGX </span>{{ property.price }}</p>
+    <p><span class="fw-bold">Owner: </span>{{ property.owner }}</p>
+    <p><span class="fw-bold">Associated Agent: </span>{{ property.agent }}</p>
+    <p><span class="fw-bold">Status: </span>{{ property.status }}</p>
+    <p><span class="fw-bold">Phone: </span>{{ property.contact }}</p>
+    <p><span class="fw-bold">Created At: </span>{{ property.created_at }}</p>
+    <p><span class="fw-bold">Updated At: </span>{{ property.updated_at }}</p>
+</div>
+    <a href="{% url 'add_property_cancel' %}" class="btn btn-danger">
+        <- Back
+    </a>
+
+{% endblock %}

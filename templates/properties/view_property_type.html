@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="text-center mt-5">Property Type Details - {{ p_type.name }}</h3>
+<div class="container m-2 text-center">
+    <p><span class="fw-bold">Property Type Name: </span>{{ p_type.name }}</p>
+    <p><span class="fw-bold">Property Type Description: </span>{{ p_type.description }}</p>
+    <p><span class="fw-bold">Created At: </span>{{ p_type.created_at }}</p>
+    <p><span class="fw-bold">Updated At: </span>{{ p_type.updated_at }}</p>
+</div>
+    <a href="{% url 'add_property_cancel' %}" class="btn btn-danger">
+        <- Back
+    </a>
+
+{% endblock %}

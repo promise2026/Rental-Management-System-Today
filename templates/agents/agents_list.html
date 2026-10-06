@@ -1,0 +1,93 @@
+{% extends 'dashboard/sidebar.html' %}
+
+{% block dashboard_content %}
+
+<h3 class="mb-4 text-primary">Agents Management</h3>
+
+<!-- 🔷 SUMMARY -->
+<div class="row mb-4">
+
+    <div class="col-md-3">
+        <div class="card p-3 text-center shadow">
+            <h6>Total Agents</h6>
+            <h3 class="text-primary">8</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 text-center shadow">
+            <h6>Active</h6>
+            <h3 class="text-success">5</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 text-center shadow">
+            <h6>Suspended</h6>
+            <h3 class="text-danger">2</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 text-center shadow">
+            <h6>Warnings</h6>
+            <h3 class="text-warning">1</h3>
+        </div>
+    </div>
+
+</div>
+
+<!-- 🔷 TABLE -->
+<div class="card shadow p-3">
+
+    <div class="d-flex justify-content-between mb-3">
+        <h5 class="text-primary">All Agents</h5>
+        <a href="{% url 'add_agent' %}" class="btn btn-primary btn-sm">+ Add Agent</a>
+    </div>
+
+    <table class="table table-hover align-middle">
+
+        <thead class="table-primary">
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Properties</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if agents_list %}
+            {% for a in agents_list %}
+            <tr>
+                <td>{{ a.name }}</td>
+                <td>{{ a.username }}</td>
+                <td>{{ a.phone }}</td>
+                <td>{{ a.address }}</td>
+                <td>{{ a.no_of_properties }}</td>
+
+                <td>
+                    <select class="form-select form-select-sm">
+                        <option>{{ a.status }}</option>
+                    </select>
+                </td>
+
+                <td>
+                    <a href="{% url 'view_agent' a.pk %}" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a>
+                    <a href="{% url 'edit_agent' a.pk %}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a >
+                    <a href="{% url 'delete_agent' a.pk %}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <h1 class="display-4 fw-bold mb-4">Find your <span class="text-warning">Perfect Home</span> in Uganda
+                </h1>
+                <p class="lead">Verified hostels, single rooms, self-contained apartments, double rooms &amp; more. <br>
+                    No brokers. No stress. Just safe and trusted rentals.
+                </p>
+            </div>
+            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                <a href="" class="btn btn-warning btn-lg px-5 py-3 fw-semibold fs-5">Browse All Properties</a>
+                <a href="" class="btn btn-outline-light btn-lg py-3 px-5 fw-semibold">I'm looking for Self-Contained</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-5">
+    <h2 class="fw-bold mb-5 text-center">How propertyConnect Works</h2>
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="card shadow border-0 card-hover h-100">
+                <div class="card-body p-4">
+                    <div class="bg-primary text-light rounded-circle d-inline-flex mb-4 justify-content-center"
+                        style="height: 70px; width: 70px;">
+                        <i class="bi bi-check-circle fs-2"></i>
+                    </div>
+                    <h4 class="fw-semibold">1. Veified Listings Only</h4>
+                    <p class="text-muted">Every property is physically monitored before going live.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow border-0 card-hover h-100">
+                <div class="card-body p-4">
+                    <div class="bg-primary text-light rounded-circle d-inline-flex mb-4 justify-content-center"
+                        style="height: 70px; width: 70px;">
+                        <i class="bi bi-search fs-2"></i>
+                    </div>
+                    <h4 class="fw-semibold">2. Browse &amp; Filter Easily</h4>
+                    <p class="text-muted">Find hostels, single rooms, self-contained, double rooms &amp; hotels by
+                        location and budget.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow border-0 card-hover h-100">
+                <div class="card-body p-4">
+                    <div class="bg-primary text-light rounded-circle d-inline-flex mb-4 justify-content-center"
+                        style="height: 70px; width: 70px;">
+                        <i class="bi bi-telephone fs-2"></i>
+                    </div>
+                    <h4 class="fw-semibold">3. Connect Safely</h4>
+                    <p class="text-muted">Pay a small one-time contact fee and speak directly with the landlord or
+                        agent.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Find Properties by Type</h2>
+        <div class="row g-4 text-center">
+
+            <div class="col-md-3 col-6">
+                <a href="l" class="text-decoration-none">
+                    <div class="card shadow border-0 card-hover h-100">
+                        <div class="card-body py-4">
+                            <i class="bi bi-building fs-1 text-primary mb-3"></i>
+                            <h5 class="fw-semibold">Hostels</h5>
+                            <p class="small text-muted mb-0">Affordable student &amp; shared living</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-6">
+                <a href="" class="text-decoration-none">
+                    <div class="card shadow border-0 card-hover h-100">
+                        <div class="card-body py-4">
+                            <i class="bi bi-door-open fs-1 text-success mb-3"></i>
+                            <h5 class="fw-semibold">Single Rooms</h5>
+                            <p class="small text-muted mb-0">Simple &amp; budget-friendly</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-6">
+                <a href="" class="text-decoration-none">
+                    <div class="card shadow border-0 card-hover h-100">
+                        <div class="card-body py-4">
+                            <i class="bi bi-house fs-1 text-warning mb-3"></i>
+                            <h5 class="fw-semibold">Self-Contained</h5>
+                            <p class="small text-muted mb-0">Your own space &amp; bathroom</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-6">
+                <a href="" class="text-decoration-none">
+                    <div class="card shadow border-0 card-hover h-100">
+                        <div class="card-body py-4">
+                            <i class="bi bi-people fs-1 text-info mb-3"></i>
+                            <h5 class="fw-semibold">Double Rooms &amp; Apartments</h5>
+                            <p class="small text-muted mb-0">For couples or small families</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <h2 class="fw-bold">Featured Properties This Week</h2>
+        <a href="" class="btn btn-outline-primary">View All Properties →</a>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow border-0 card-hover overflow-hidden">
+                <img src="{% static 'images/houses_for_rent.jpg' %}" class="card-img-top" alt="Hostel"
+                    style="height: 220px; object-fit: cover;">
+                <div class="card-body">
+                    <span class="badge bg-success mb-2">Hostel</span>
+                    <h5 class="card-title">Modern Hostel - Nsambya</h5>
+                    <p class="text-muted small mb-2">Kampala • Near Main Campus</p>
+                    <p class="fw-bold text-primary fs-5 mb-0">UGX 350,000 <small class="text-muted">/ month</small></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow border-0 card-hover overflow-hidden">
+                <img src="{% static 'images/houses_for_rent.jpg' %}" class="card-img-top" alt="Self Contained"
+                    style="height: 220px; object-fit: cover;">
+                <div class="card-body">
+                    <span class="badge bg-warning mb-2">Self-Contained</span>
+                    <h5 class="card-title">Single Self-Contained - Kisaasi</h5>
+                    <p class="text-muted small mb-2">Kampala • Water &amp; Power 24/7</p>
+                    <p class="fw-bold text-primary fs-5 mb-0">UGX 850,000 <small class="text-muted">/ month</small></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow border-0 card-hover overflow-hidden">
+                <img src="{% static 'images/houses_for_rent.jpg' %}" class="card-img-top" alt="Double Room"
+                    style="height: 220px; object-fit: cover;">
+                <div class="card-body">
+                    <span class="badge bg-info mb-2">Double Room</span>
+                    <h5 class="card-title">Spacious Double Room - Entebbe</h5>
+                    <p class="text-muted small mb-2">Entebbe • Near Airport</p>
+                    <p class="fw-bold text-primary fs-5 mb-0">UGX 550,000 <small class="text-muted">/ month</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3">Ready to Move Into Your New Home?</h2>
+        <p class="lead mb-4">Thousands of tenants have already found their perfect space with us.</p>
+        <a href="" class="btn btn-warning btn-lg px-5 py-3 fw-semibold">
+            Start Browsing Properties Now
+        </a>
+    </div>
+</div>
+{% endblock %}

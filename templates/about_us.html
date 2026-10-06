@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="bg-primary text-white text-center p-5 rounded-3">
+    <h1 class="fw-bold">About Propoert Connect</h1>
+    <p class="lead">Connecting you to verified homes with trust and ease</p>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="text-primary">Who We Are</h3>
+            <p>Property Connect is a modern property discovery platformdesigned to simplify the way people find homes, hostels, apartemnts, guesthouses and hotels. We focus on providing verified and reliable property listings to eliminate fraud and reduce the time spent searching for accommodation.</p>
+            <p>Our system is built with a strong commitment to transparency, trust and efficiency, ensuring that every user finds exactly what they are looking for.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images/houses_for_rent.jpg' %}" alt="Houses for rent">
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row text-center">
+        <div class="col-md-6">
+            <div class="card shadow p-4 h-100">
+                <h4 class="text-primary">Our Mission</h4>
+                <p>To provide trusted and efficient platform where tenants can easily find verified properties without the risks associated wuth brokers and scams.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow p-4 h-100">
+                <h4 class="text-primary">Our Vision</h4>
+                <p>To become the leading property connection platform in Uganda, East Africa and beyond by delivering reliable and innovative housing solutions.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">How We Work</h2>
+
+    <div class="row text-center">
+
+        <div class="col-md-4">
+            <div class="card shadow p-4 h-100">
+                <h5 class="text-primary">Agent Verification</h5>
+                <p>Our agents physically visit and verify every property before uploading it to the system.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-4 h-100">
+                <h5 class="text-primary">Accurate Listings</h5>
+                <p>Each property is listed with correct details, including type, price and location.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow p-4 h-100">
+                <h5 class="text-primary">Direct Contact</h5>
+                <p>Tenants can directly contact landlords after a small verification fee.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Why Choose Us</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">✅Verified and trusted listings</li>
+                <li class="list-group-item">✅No middlemen or brokers</li>
+                <li class="list-group-item">✅Saves time and money</li>
+                <li class="list-group-item">✅Easy-to-use platform</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">✅Direct landlord communication</li>
+                <li class="list-group-item">✅Secure and reliable system</li>
+                <li class="list-group-item">✅Scalable across regions</li>
+                <li class="list-group-item">✅Continuous improvemnets and innovation</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="card p-4 shadow">
+        <h3 class="text-primary">Our Future Goals</h3>
+        <p>We aim to expand our services across Uganda and into East Africa, integrating advanced technologies such as AI-powered property recommendation. In the future, we will also include property sales, land listings, and mobile applications to improve accessibility</p>
+    </div>
+</div>
+
+{% endblock %}
