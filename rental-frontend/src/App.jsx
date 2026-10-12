@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Properties from "./pages/Properties";
 import PropertyDetails from "./pages/PropertyDetails";
-import Login from "./pages/Login";
+import Login from "./Pages/Login";
 import Register from "./pages/Register";
 import ListProperty from "./pages/ListProperty";
 import MyProperties from "./pages/MyProperties";
@@ -34,10 +34,6 @@ function App() {
 
           <Route path="/register" element={<Register />} />
 
-          <Route
-            path="/list-property"
-            element={<ListProperty />}
-          />
 
           <Route
             path="/my-properties"

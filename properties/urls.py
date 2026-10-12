@@ -1,11 +1,13 @@
-from django.urls import path, include
+from django.urls import include, path
+
 from rest_framework.routers import DefaultRouter
 
 from .views import (
     PropertyRegistrationViewSet,
     PropertyTypeViewSet,
     PropertyOwnershipViewSet,
-    PropertyImageViewSet
+    PropertyImageViewSet,
+    PropertyInquiryViewSet
 )
 
 
@@ -40,6 +42,18 @@ router.register(
 )
 
 
+router.register(
+    r'inquiries',
+    PropertyInquiryViewSet,
+    basename='property-inquiry'
+)
+
+
 urlpatterns = [
-    path('api/', include(router.urls)),
+
+    path(
+        'api/',
+        include(router.urls)
+    ),
+
 ]

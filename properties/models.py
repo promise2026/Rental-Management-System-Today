@@ -1,26 +1,60 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
 class PropertyType(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.TextField(max_length=255)
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+
+    name = models.CharField(
+        max_length=50
+    )
+
+    description = models.TextField(
+        max_length=255
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
 
     def __str__(self):
         return self.name
 
 
 class PropertyOwnership(models.Model):
-    owner_name = models.CharField(max_length=50)
-    phone_number = models.IntegerField()
+
+    user = models.OneToOneField(
+        User,
+        on_delete=models.SET_NULL,
+        related_name='property_ownership',
+        blank=True,
+        null=True
+    )
+
+    owner_name = models.CharField(
+        max_length=100
+    )
+
+    phone_number = models.CharField(
+        max_length=20
+    )
+
     email = models.EmailField(
         max_length=254,
         blank=True,
         null=True
     )
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
 
     def __str__(self):
         return self.owner_name
@@ -29,45 +63,66 @@ class PropertyOwnership(models.Model):
 STATUS_CHOICES = [
     ('occupied', 'Occupied'),
     ('available', 'Available'),
-    ('under_review', 'Under Review')
+    ('under_review', 'Under Review'),
 ]
 
 
 class PropertyRegistration(models.Model):
-    name = models.CharField(max_length=50)
+
+    name = models.CharField(
+        max_length=100
+    )
 
     property_type = models.ForeignKey(
         PropertyType,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='properties'
     )
 
-    location = models.CharField(max_length=50)
+    location = models.CharField(
+        max_length=100
+    )
 
-    price = models.IntegerField(default=0)
+    price = models.PositiveIntegerField(
+        default=0
+    )
 
     owner = models.ForeignKey(
         PropertyOwnership,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='properties'
     )
 
-    agent = models.CharField(max_length=50)
+    agent = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True
+    )
 
     status = models.CharField(
-        max_length=50,
+        max_length=20,
         choices=STATUS_CHOICES,
         default='under_review'
     )
 
-    contact = models.IntegerField()
+    contact = models.CharField(
+        max_length=20
+    )
 
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
 
     def __str__(self):
         return self.name
 
 
 class PropertyImage(models.Model):
+
     property = models.ForeignKey(
         PropertyRegistration,
         on_delete=models.CASCADE,
@@ -90,3 +145,48 @@ class PropertyImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.property.name}"
+
+
+class PropertyInquiry(models.Model):
+
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('responded', 'Responded'),
+        ('closed', 'Closed'),
+    ]
+
+    property = models.ForeignKey(
+        PropertyRegistration,
+        on_delete=models.CASCADE,
+        related_name='inquiries'
+    )
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='property_inquiries'
+    )
+
+    message = models.TextField(
+        max_length=1000
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='pending'
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+
+    def __str__(self):
+        return (
+            f"{self.user.username} - "
+            f"{self.property.name}"
+        )

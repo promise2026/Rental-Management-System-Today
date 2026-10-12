@@ -27,9 +27,7 @@ function Footer() {
             Find Accommodation
           </a>
 
-          <a href="/list-property">
-            List Your Property
-          </a>
+      
 
           <a href="/about">
             About Us

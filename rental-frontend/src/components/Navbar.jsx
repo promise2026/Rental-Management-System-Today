@@ -64,13 +64,6 @@ function Navbar() {
             Find Accommodation
           </Link>
 
-          <Link
-            to="/list-property"
-            className={isActive("/list-property")}
-            onClick={() => setMenuOpen(false)}
-          >
-            List Your Property
-          </Link>
 
           <Link
             to="/favorites"

@@ -1,13 +1,11 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Favorites() {
-
-  const [favorites, setFavorites] =
-    useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-
     loadFavorites();
 
     window.addEventListener(
@@ -16,176 +14,325 @@ function Favorites() {
     );
 
     return () => {
-
       window.removeEventListener(
         "storage",
         loadFavorites
       );
-
     };
-
   }, []);
 
   function loadFavorites() {
-
-    const saved =
+    const savedFavorites =
       JSON.parse(
-        localStorage.getItem(
-          "favorites"
-        ) || "[]"
-      );
+        localStorage.getItem("favorites")
+      ) || [];
 
-    setFavorites(saved);
-
+    setFavorites(savedFavorites);
   }
 
   function removeFavorite(id) {
-
-    const updated =
+    const updatedFavorites =
       favorites.filter(
         (property) =>
-          property.id !== id
+          Number(property.id) !== Number(id)
       );
 
     localStorage.setItem(
       "favorites",
-      JSON.stringify(updated)
+      JSON.stringify(updatedFavorites)
     );
 
-    setFavorites(updated);
+    setFavorites(updatedFavorites);
+  }
 
+  function clearFavorites() {
+    localStorage.removeItem("favorites");
+
+    setFavorites([]);
+  }
+
+  function formatPrice(price) {
+    return new Intl.NumberFormat("en-UG").format(
+      Number(price) || 0
+    );
+  }
+
+  function getStatusLabel(status) {
+    if (status === "available") {
+      return "Available";
+    }
+
+    if (status === "occupied") {
+      return "Occupied";
+    }
+
+    if (status === "under_review") {
+      return "Under Review";
+    }
+
+    return status || "Unknown";
   }
 
   return (
     <div className="page">
 
-      <div className="page-header">
+      {/* PAGE HEADER */}
+
+      <section className="page-header">
 
         <div>
 
           <span className="page-label">
-            RENTALHUB
+            SAVED PROPERTIES
           </span>
 
           <h1>
-            Saved Accommodation
+            My Favorites
           </h1>
 
           <p>
-            Properties you have saved for later.
+            Properties you have saved for
+            later.
           </p>
 
         </div>
 
-      </div>
+        {favorites.length > 0 && (
+          <button
+            type="button"
+            className="btn btn-light"
+            onClick={clearFavorites}
+          >
+            Clear All
+          </button>
+        )}
 
-      {favorites.length === 0 ? (
+      </section>
 
-        <div className="empty-state">
 
-          <div>
-            ❤️
+      {/* EMPTY STATE */}
+
+      {favorites.length === 0 && (
+
+        <section
+          style={{
+            textAlign: "center",
+            padding: "70px 20px",
+            background: "#ffffff",
+            borderRadius: "16px",
+            marginTop: "30px",
+          }}
+        >
+
+          <div
+            style={{
+              fontSize: "60px",
+              marginBottom: "20px",
+            }}
+          >
+            ♡
           </div>
 
-          <h3>
-            No Saved Properties
-          </h3>
+          <h2>
+            No Favorite Properties
+          </h2>
 
-          <p>
-            When you find accommodation you like,
-            save it here for easy access.
+          <p
+            style={{
+              maxWidth: "500px",
+              margin:
+                "10px auto 25px",
+            }}
+          >
+            You have not saved any
+            properties yet. Browse available
+            accommodation and save properties
+            you like.
           </p>
 
           <Link
             to="/properties"
             className="btn btn-primary"
           >
-            Find Accommodation
+            Browse Properties
           </Link>
 
-        </div>
+        </section>
 
-      ) : (
+      )}
 
-        <div className="property-grid">
 
-          {favorites.map(
-            (property) => (
+      {/* FAVORITES */}
 
-              <div
-                className="property-card"
-                key={property.id}
-              >
+      {favorites.length > 0 && (
 
-                <div className="property-image">
+        <>
 
-                  <div className="property-image-placeholder">
-                    🏠
-                  </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent:
+                "space-between",
+              alignItems: "center",
+              marginTop: "30px",
+              marginBottom: "20px",
+            }}
+          >
 
-                  <span className="status available">
-                    {property.status ||
-                      "Available"}
-                  </span>
+            <h2>
+              Saved Properties
+            </h2>
 
-                </div>
+            <span>
+              {favorites.length}{" "}
+              {favorites.length === 1
+                ? "property"
+                : "properties"}
+            </span>
 
-                <div className="property-card-content">
+          </div>
 
-                  <h3>
-                    {property.name}
-                  </h3>
 
-                  <p className="property-location">
-                    📍 {property.location}
-                  </p>
+          <section className="property-grid">
 
-                  <div className="property-price">
+            {favorites.map(
+              (property) => (
 
-                    <strong>
-                      UGX{" "}
-                      {Number(
-                        property.price ||
-                          0
-                      ).toLocaleString()}
-                    </strong>
+                <article
+                  className="property-card"
+                  key={property.id}
+                >
 
-                    <span>
-                      / month
+                  {/* PROPERTY IMAGE */}
+
+                  <div className="property-image">
+
+                    {property.image ? (
+
+                      <img
+                        src={property.image}
+                        alt={
+                          property.name
+                        }
+                      />
+
+                    ) : (
+
+                      <div
+                        className="image-placeholder"
+                      >
+
+                        <span>
+                          🏠
+                        </span>
+
+                        <p>
+                          No image available
+                        </p>
+
+                      </div>
+
+                    )}
+
+
+                    {/* STATUS */}
+
+                    <span
+                      className={`property-status ${
+                        property.status ||
+                        ""
+                      }`}
+                    >
+                      {getStatusLabel(
+                        property.status
+                      )}
                     </span>
 
                   </div>
 
-                  <div className="management-actions">
 
-                    <Link
-                      to={`/properties/${property.id}`}
-                      className="btn btn-primary"
-                    >
-                      View Details
-                    </Link>
+                  {/* PROPERTY INFORMATION */}
 
-                    <button
-                      className="btn btn-delete"
-                      onClick={() =>
-                        removeFavorite(
-                          property.id
-                        )
-                      }
+                  <div className="property-card-content">
+
+                    <span className="property-type">
+                      Accommodation
+                    </span>
+
+                    <h3>
+                      {property.name}
+                    </h3>
+
+                    <p className="property-location">
+                      📍{" "}
+                      {property.location}
+                    </p>
+
+
+                    <div className="property-price">
+
+                      <strong>
+                        UGX{" "}
+                        {formatPrice(
+                          property.price
+                        )}
+                      </strong>
+
+                      <span>
+                        / month
+                      </span>
+
+                    </div>
+
+
+                    {/* ACTIONS */}
+
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "10px",
+                        marginTop: "15px",
+                      }}
                     >
-                      Remove
-                    </button>
+
+                      <Link
+                        to={`/properties/${property.id}`}
+                        className="btn btn-primary"
+                        style={{
+                          flex: 1,
+                          textAlign:
+                            "center",
+                        }}
+                      >
+                        View Property
+                      </Link>
+
+
+                      <button
+                        type="button"
+                        className="btn btn-light"
+                        onClick={() =>
+                          removeFavorite(
+                            property.id
+                          )
+                        }
+                        title="Remove from favorites"
+                      >
+                        ♥
+                      </button>
+
+                    </div>
 
                   </div>
 
-                </div>
+                </article>
 
-              </div>
+              )
+            )}
 
-            )
-          )}
+          </section>
 
-        </div>
+        </>
 
       )}
 
@@ -194,3 +341,4 @@ function Favorites() {
 }
 
 export default Favorites;
+
