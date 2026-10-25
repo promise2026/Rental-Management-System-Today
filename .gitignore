@@ -174,3 +174,24 @@ cython_debug/
 #.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/django
+
+
+# Python / Backend
+Backend/venv/
+Backend/.venv/
+Backend/__pycache__/
+Backend/**/__pycache__/
+Backend/*.pyc
+Backend/db.sqlite3
+Backend/media/
+
+# Node / Frontend
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.vite/
+
+# Environment files
+.env
+Backend/.env
+Frontend/.env
+EOF
