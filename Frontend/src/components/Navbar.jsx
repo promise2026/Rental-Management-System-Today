@@ -84,6 +84,14 @@ function Navbar() {
           {loggedInUser ? (
             <>
               <Link
+                to="/dashboard"
+                className={isActive("/dashboard")}
+                onClick={() => setMenuOpen(false)}
+              >
+                Dashboard
+              </Link>
+
+              <Link
                 to="/profile"
                 className={isActive("/profile")}
                 onClick={() => setMenuOpen(false)}

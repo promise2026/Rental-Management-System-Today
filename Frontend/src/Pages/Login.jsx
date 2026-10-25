@@ -65,7 +65,7 @@ function Login() {
       // Notify other components that authentication has changed.
       window.dispatchEvent(new Event("storage"));
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       console.error("Login error:", err);
       setError(

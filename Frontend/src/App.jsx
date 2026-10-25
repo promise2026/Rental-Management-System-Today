@@ -8,6 +8,7 @@ import Properties from "./Pages/Properties";
 import PropertyDetails from "./Pages/PropertyDetails";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import Dashboard from "./Pages/Dashboard";
 import ListProperty from "./Pages/ListProperty";
 import MyProperties from "./Pages/MyProperties";
 import Favorites from "./Pages/Favorites";
@@ -33,6 +34,9 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           <Route path="/register" element={<Register />} />
+
+          {/* Dashboard — post-login landing page */}
+          <Route path="/dashboard" element={<Dashboard />} />
 
 
           <Route
